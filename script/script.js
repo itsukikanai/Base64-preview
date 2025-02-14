@@ -98,9 +98,12 @@ function updatePreview(base64String) {
     else if (base64String.startsWith('/9j/')) fileType = 'image/jpeg';
     else if (base64String.startsWith('R0lG')) fileType = 'image/gif';
     else if (base64String.startsWith('JVBER')) fileType = 'application/pdf';
-    else if (base64String.startsWith('UklGR')) fileType = 'image/webp';
-    else if (base64String.startsWith('data:audio/')) fileType = 'audio/mp3';
+    else if (base64String.startsWith('C94B')) fileType = 'image/webp';
+    else if (base64String.startsWith('SUQz')) fileType = 'audio/mp3';
     else if (base64String.startsWith('data:video/')) fileType = 'video/mp4';
+    else if (base64String.startsWith('UklGRkwc')) fileType = 'audio/wav';
+    else if (base64String.startsWith('data:image/tiff;base64,')) fileType = 'image/tiff';
+    else if (base64String.startsWith('data:video/quicktime;base64,')) fileType = 'video/quicktime';
 
     // すべてのプレビュー要素を非表示にする
     ['image', 'audio', 'video', 'pdf'].forEach(id => {
@@ -116,3 +119,4 @@ function updatePreview(base64String) {
         element.style.display = 'block';
     }
 }
+
