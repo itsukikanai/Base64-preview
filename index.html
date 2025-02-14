@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 プレビュー</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Base64 プレビュー</h1>
+    <input type="text" id="urlInput" placeholder="テキストを取得するURLを入力してください" style="width: 100%; margin-bottom: 10px;">
+    <textarea id="base64Input" rows="4" cols="50" placeholder="Base64エンコードされた文字列を入力してください"></textarea><br>
+    <a href="#" id="fetchLink" style="color: blue; text-decoration: underline; cursor: pointer;">テキストを取得</a>
+    <button id="pasteButton">クリップボードから貼り付け</button>
+    
+    <input type="file" id="fileInput" accept=".txt" style="margin-top: 10px;">
+    
+    <img id="preview" alt="画像プレビュー" />
+    <audio id="audio" controls></audio>
+    <video id="video" controls></video>
+    <iframe id="pdf-preview"></iframe>
+
+    <script src="script.js"></script>
+</body>
+</html>
