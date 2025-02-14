@@ -12,7 +12,7 @@ function getQueryParams() {
 }
 
 // ページ読み込み時にクエリパラメータを確認
-window.onload = function() {
+window.onload = function () {
     const params = getQueryParams();
 
     // ?string= の場合
@@ -40,7 +40,7 @@ window.onload = function() {
     }
 };
 
-document.getElementById('fetchLink').addEventListener('click', function(event) {
+document.getElementById('fetchLink').addEventListener('click', function (event) {
     event.preventDefault(); // リンクのデフォルト動作を防止
 
     const url = document.getElementById('urlInput').value.trim(); // 入力されたURLを取得
@@ -66,7 +66,7 @@ document.getElementById('fetchLink').addEventListener('click', function(event) {
         });
 });
 
-document.getElementById('pasteButton').addEventListener('click', async function() {
+document.getElementById('pasteButton').addEventListener('click', async function () {
     try {
         const text = await navigator.clipboard.readText();
         document.getElementById('base64Input').value = text;
@@ -77,11 +77,11 @@ document.getElementById('pasteButton').addEventListener('click', async function(
 });
 
 // ファイル入力の変更イベント
-document.getElementById('fileInput').addEventListener('change', function(event) {
+document.getElementById('fileInput').addEventListener('change', function (event) {
     const file = event.target.files[0];
     if (file) {
         const reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             const content = e.target.result;
             document.getElementById('base64Input').value = content;
             updatePreview(content); // ファイルの内容でプレビューを更新
@@ -90,7 +90,7 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
     }
 });
 
-document.getElementById('base64Input').addEventListener('input', function() {
+document.getElementById('base64Input').addEventListener('input', function () {
     updatePreview(this.value.trim());
 });
 
@@ -106,15 +106,15 @@ function updatePreview(base64String) {
     else if (base64String.startsWith('data:video/')) fileType = 'video/mp4';
 
     // すべてのプレビュー要素を非表示にする
-    ['preview', 'audio', 'video', 'pdf-preview'].forEach(id => {
+    ['image', 'audio', 'video', 'pdf'].forEach(id => {
         document.getElementById(id).style.display = 'none';
     });
 
     if (base64String && fileType) {
         const fullBase64String = `data:${fileType};base64,${base64String}`;
-        const element = document.getElementById(fileType.startsWith('image/') ? 'preview' :
-                                               fileType.startsWith('audio/') ? 'audio' :
-                                               fileType.startsWith('video/') ? 'video' : 'pdf-preview');
+        const element = document.getElementById(fileType.startsWith('image/') ? 'image' :
+            fileType.startsWith('audio/') ? 'audio' :
+                fileType.startsWith('video/') ? 'video' : 'pdf');
         element.src = fullBase64String;
         element.style.display = 'block';
     }
